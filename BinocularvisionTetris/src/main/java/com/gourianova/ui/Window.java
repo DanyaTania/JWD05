@@ -21,7 +21,7 @@ public class Window extends JFrame implements Runnable {
 
     public void initForm() {
         //setSize(Config.WIDTH*Config.WIDTH, Config.HEIGHT*Config.HEIGHT);
-        setSize(Config.WIDTH * Config.HEIGHT + Config.WIDTH, Config.HEIGHT * Config.HEIGHT + Config.HEIGHT);
+        setSize(Config.WIDTH * Config.HEIGHT+Config.WIDTH, Config.HEIGHT * Config.HEIGHT+Config.HEIGHT+Config.WIDTH );
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
