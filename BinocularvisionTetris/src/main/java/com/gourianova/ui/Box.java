@@ -6,8 +6,8 @@ import java.awt.*;
 public class Box extends JPanel {
     public Box(int x, int y){
     //    setBounds(x*Config.SIZE,y*Config.SIZE,Config.SIZE,Config.SIZE);
-        setSize(Config.SIZE,Config.SIZE);
-        setLocation(x*Config.SIZE,y*Config.SIZE);
+        setSize(Config.HEIGHT,Config.HEIGHT);
+        setLocation(x*Config.HEIGHT,y*Config.HEIGHT);
         setLayout(null);
         setBackground(Config.BACK);
     }

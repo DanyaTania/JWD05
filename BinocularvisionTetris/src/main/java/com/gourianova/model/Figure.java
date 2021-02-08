@@ -4,88 +4,87 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Figure {
-    I1(0, 1, 1, 1, 2, 1, 3, 1),//ooooo
-    I2(1, 0,                   // vertical orientation
-            1, 1,
-            1, 2,
-            1, 3),
-    J1(1, 0,
-            1, 1,
+    I1(0, 1,  1, 1, 2, 1, 3, 1),//ooooo
+    I2(   1, 0,                   // vertical orientation
+                  1, 1,
+                  1, 2,
+                  1, 3),
+    J1(   1, 0,
+                  1, 1,
             0, 2, 1, 2),
-    J2(0, 0,
-            0, 1, 1, 1, 2, 1),
+    J2( 0, 0,
+                0, 1, 1, 1, 2, 1),
     J3(1, 0, 2, 0,
-            1, 1,
-            1, 2),
+               1, 1,
+               1, 2),
     J4(0, 1, 1, 1, 2, 1,
-            2, 2),
+                           2, 2),
     L1(1, 0,
-            1, 1,
-            1, 2, 2, 2),
+               1, 1,
+               1, 2, 2, 2),
     L2(0, 1, 1, 1, 2, 1,
-            0, 2),
+               0, 2),
     L3(0, 0, 1, 0,
-            1, 1,
-            1, 2),
-    L4(2, 0,
-            0, 1, 1, 1, 2, 1),
+                     1, 1,
+                     1, 2),
+    L4(           2, 0,
+              0, 1, 1, 1, 2, 1),
     O(0, 0, 1, 0,
-            0, 1, 1, 1),
-    S1(1, 1, 2, 1,
-            0, 1, 1, 2),
+              0, 1, 1, 1),
+    S1(   1, 1, 2, 1,
+            0, 2, 1, 2),
     S2(0, 0,
-            0, 1, 1, 1,
-            2, 1),
+               0, 1, 1, 1,
+                     1, 2),
     T1(0, 1, 1, 1, 2, 1,
-            1, 2),
-    T2(1, 0,
-            0, 1, 1, 1,
-            1, 2),
-    T3(1, 0,
+                     1, 2),
+    T2(        1, 0,
+               0, 1, 1, 1,
+                     1, 2),
+    T3(   1, 0,
             0, 1, 1, 1, 2, 1),
     T4(1, 0,
-            1, 1, 2, 1,
-            1, 2),
-    Z1(   0, 1,  1, 1,
-                         1, 2,   2, 2),
-    Z2(    2, 0,
-            1, 1, 2, 1,
-            1, 2);
+               1, 1,   2, 1,
+               1, 2),
+    Z1(  0, 1, 1, 1,
+                       1, 2, 2, 2),
+    Z2(       2, 0,
+                1, 1, 2, 1,
+                1, 2);
 
 
-   public List<Coord> dots;
+    public List<Coord> dots;
 
-   public final Coord top;
-   public final Coord bottom;
+    public final Coord top;
+    public final Coord bottom;
 
     Figure(int... coords) {
         dots = new ArrayList<Coord>();
         for (int j = 0; j < coords.length; j += 2)
             dots.add(new Coord(coords[j], coords[j + 1]));
-        top= setTop();
-        bottom=setBottom();
+        top = setTop();
+        bottom = setBottom();
     }
 
-    private Coord setTop(){
-        int x=dots.get(0).x;
-        int y=dots.get(0).y;
-        for (Coord coord:dots){
-            if (x<coord.x) x=coord.x;
-            if (y<coord.y) y=coord.y;
+    private Coord setTop() {
+        int x = dots.get(0).x;
+        int y = dots.get(0).y;
+        for (Coord coord : dots) {
+            if (x < coord.x) x = coord.x;
+            if (y < coord.y) y = coord.y;
         }
-    return new Coord(x,y);
+        return new Coord(x, y);
     }
 
-    private Coord setBottom(){
-        int x=dots.get(0).x;
-        int y=dots.get(0).y;
-        for (Coord coord:dots){
-            if (x>coord.x) x=coord.x;
-            if (y>coord.y) y=coord.y;
+    private Coord setBottom() {
+        int x = dots.get(0).x;
+        int y = dots.get(0).y;
+        for (Coord coord : dots) {
+            if (x > coord.x) x = coord.x;
+            if (y > coord.y) y = coord.y;
         }
-        return new Coord(x,y);
+        return new Coord(x, y);
     }
-
 
 
     public Figure turnLeft() {
@@ -122,7 +121,7 @@ public enum Figure {
                 return S2;
             case S2:
                 return S1;
-            case T1:
+           case T1:
                 return T2;
             case T2:
                 return T3;
@@ -137,6 +136,29 @@ public enum Figure {
                 return Z1;
         }
     }
-public static Figure getRandom(){
-        return Figure.values()[(int)Math.random()*Figure.values().length]; }
+
+    public static Figure getRandom() {
+        int minAmountOfDifferentFigures = 0;
+        int maxAmountOfDifferentFigures = 6;
+        int random = (int) (Math.floor(Math.random() * (maxAmountOfDifferentFigures - minAmountOfDifferentFigures + 1)) + minAmountOfDifferentFigures);
+
+        switch (random) {
+            case 0:
+                return Z1;
+            case 1:
+                return T1;
+            case 2:
+                return S1;
+            case 3:
+                return O;
+            case 4:
+                return L1;
+            case 5:
+                return J1;
+            case 6:
+                default:
+                return I1;
+        }
+
+    }
 }
